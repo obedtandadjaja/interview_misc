@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Amazon Analytics Carousel</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+  <button id="prev" disabled>previous</button>
+  <div class="carousel" style="display: inline">
+    <img src="assets/pic01.jpg"/>
+    <img src="assets/pic02.jpg"/>
+    <img src="assets/pic03.jpg"/>
+    <img src="assets/pic04.jpg"/>
+    <img src="assets/pic05.jpg"/>
+    <img src="assets/pic06.jpg"/>
+    <img src="assets/pic07.jpg"/>
+    <img src="assets/pic08.jpg"/>
+  </div>
+  <button id="next">next</button>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var index = 0;
+      var count = 0;
+      var img_array = [];
+
+      function initializeCarousel() {
+        $.each($(".carousel img"), function(i) {
+          img_array.push($(this).remove());
+          count++;
+        });
+        $(".carousel").append(img_array[index]);
+      }
+
+      $('#next').click(function() {
+        if(index == 0) $("#prev").removeAttr('disabled');
+        index++;
+        if(index == count-1) $(this).attr('disabled', 'true');
+        $(".carousel img").remove();
+        $(".carousel").append(img_array[index]);
+      });
+
+      $('#prev').click(function() {
+        if(index == count-1) $("#next").removeAttr('disabled');
+        index--;
+        if(index == 0) $(this).attr('disabled', 'true');
+        $(".carousel img").remove();
+        $(".carousel").append(img_array[index]);
+      });
+
+      initializeCarousel();
+    });
+  </script>
+</body>
+</html>
