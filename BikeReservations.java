@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 // max_bikes = 100
@@ -16,50 +15,53 @@ import java.util.*;
 
 class BikeReservations {
 
-  static ArrayList<BikeReservation> reservations;
+  ArrayList<BikeReservation> reservations;
+  int bikeCount;
+  PriorityQueue<BikeReservation> returns;
 
   public static void main(String[] args) {
-    reservations = new ArrayList<BikeReservation>();
-    reservations.add(new BikeReservation(5, 10, 20));
-    reservations.add(new BikeReservation(6, 9, 15));
-    reservations.add(new BikeReservation(6, 9, 1));
-    reservations.add(new BikeReservation(6, 9, 1));
-    reservations.add(new BikeReservation(7, 8, 2));
-    System.out.println(acceptReservation(6, 9, 1));
+    BikeReservations bikeReservations = new BikeReservations(40);
+    bikeReservations.reservations.add(new BikeReservation(5, 10, 10)); // 30
+    bikeReservations.reservations.add(new BikeReservation(6, 9, 10)); // 20
+    bikeReservations.reservations.add(new BikeReservation(6, 9, 10)); // 10
+    bikeReservations.reservations.add(new BikeReservation(6, 9, 10)); // 0
+    bikeReservations.reservations.add(new BikeReservation(9, 12, 10)); // 20
+    bikeReservations.reservations.add(new BikeReservation(10, 12, 10)); // 20
+    bikeReservations.reservations.add(new BikeReservation(13, 15, 10)); // 30
+    System.out.println(bikeReservations.acceptReservation(11, 12, 20));
   }
 
-  public static boolean acceptReservation(int start, int end, int count) {
-    reservations.add(new BikeReservation(start, end, count));
-    Collections.sort(reservations, BikeReservation.Comparators.START);
-    System.out.println(reservations.toString());
-    int currentBikeCount = 40;
-    int currentLowestEnd = Integer.MAX_VALUE;
-    ArrayList<BikeReservation> returns = new ArrayList<BikeReservation>();
-    for(int i = 0; i < reservations.size(); i++) {
-      BikeReservation reservation = reservations.get(i);
-      if(currentBikeCount >= reservation.count) {
-        currentBikeCount -= reservation.count;
-        currentLowestEnd = Math.min(currentLowestEnd, reservation.end);
-        returns.add(reservation);
-        while(i+1 < reservations.size() && i+1 < currentLowestEnd) {
-          reservation = reservations.get(i+1);
-          if(currentBikeCount >= reservation.count) {
-            currentBikeCount -= reservation.count;
-            currentLowestEnd = Math.min(currentLowestEnd, reservation.end);
-            returns.add(reservation);
-            i++;
-          } else {
-            return false;
-          }
-        }
-        for(int j = 0; j < returns.size(); j++) {
-          BikeReservation returnReservation = returns.get(j);
-          currentBikeCount += returnReservation.count;
-        }
-      } else {
-        return false;
+  public BikeReservations(int bikeCount) {
+    this.bikeCount = bikeCount;
+    reservations = new ArrayList<>();
+    returns = new PriorityQueue<BikeReservation>(BikeReservation.Comparators.END);
+  }
+
+  public boolean acceptReservation(int start, int end, int count) {
+    if(count == 0 || start == end) return true;
+    int index = 0;
+    boolean inserted = false;
+    while(index < reservations.size() || !inserted) {
+      int endIndex = inserted ? reservations.get(index).start : Math.min(start, reservations.get(index).start);
+      while(!returns.isEmpty() && returns.peek().end <= endIndex) {
+        BikeReservation br = returns.poll();
+        bikeCount += br.count;
+        System.out.println("+"+br.count+" = "+bikeCount+" "+br.start+" "+br.end);
       }
-      currentLowestEnd = Integer.MAX_VALUE;
+
+      if((index == reservations.size() || start < reservations.get(index).start) && !inserted) {
+        System.out.println(bikeCount);
+        bikeCount -= count;
+        if(bikeCount < 0) return false;
+        returns.add(new BikeReservation(start, end, count));
+        inserted = true;
+      } else if(returns.size() == 0 || returns.peek().end > reservations.get(index).start) {
+        bikeCount -= reservations.get(index).count;
+        System.out.println("-"+reservations.get(index).count+" "+bikeCount);
+        if(bikeCount < 0) return false;
+        returns.add(reservations.get(index));
+        index++;
+      }
     }
     return true;
   }
@@ -79,6 +81,12 @@ class BikeReservations {
         @Override
         public int compare(BikeReservation br1, BikeReservation br2) {
           return br1.start-br2.start;
+        }
+      };
+      public static Comparator<BikeReservation> END = new Comparator<BikeReservation>() {
+        @Override
+        public int compare(BikeReservation br1, BikeReservation br2) {
+          return br1.end-br2.end;
         }
       };
     }

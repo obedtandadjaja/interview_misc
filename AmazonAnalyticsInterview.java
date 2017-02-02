@@ -1,4 +1,12 @@
 //pijain@amazon.com
+
+// brackets permutation
+// i.e. ((()))
+// ()()()
+// ()(())
+// (())()
+// ((()))
+
 public static void generate(String res, int max) {
   if(res.length() == max*2) System.out.println(res);
   else {
