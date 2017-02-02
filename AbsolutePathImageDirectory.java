@@ -6,6 +6,23 @@ public class AbsolutePathImageDirectory {
 
   public static void main(String[] args) {
     AbsolutePathImageDirectory apid = new AbsolutePathImageDirectory();
+    System.out.println("(1) First approach using Brute Force");
+    apid.printAbsolutePath(new String[] {
+      "/usr",
+      "  /local",
+      "    profile.jpg",
+      "    /bin",
+      "      config.txt",
+      "      dest.png",
+      "    /rbin",
+      "  img.gif",
+      "/sys",
+      "  /re",
+      "  /tmp",
+      "    pic.jpg"
+      }
+    );
+    System.out.println("\n(2) Second approach using Trees");
     apid.add(new String[] {
       "/usr",
       "  /local",
@@ -22,6 +39,25 @@ public class AbsolutePathImageDirectory {
       }
     );
     System.out.println(Arrays.toString(apid.getAbsolutePath()));
+  }
+
+  public void printAbsolutePath(String[] inputs) {
+    for(int i = 0; i < inputs.length; i++) {
+      if(isImage(inputs[i])) {
+        int imageIndentCount = inputs[i].length()-inputs[i].replace(" ", "").length();
+        StringBuilder sb = new StringBuilder();
+        for(int j = i; j >= 0; j--) {
+          if(inputs[j].contains("/")) {
+            int indent = inputs[j].length()-inputs[j].replace(" ", "").length();
+            if(indent+2 == imageIndentCount) {
+              sb.insert(0,inputs[j].replace(" ",""));
+              imageIndentCount -= 2;
+            }
+          }
+        }
+        System.out.println(sb.toString());
+      }
+    }
   }
 
   public AbsolutePathImageDirectory() {
