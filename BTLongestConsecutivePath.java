@@ -7,11 +7,16 @@ public class BTLongestConsecutivePath {
     t.add(2);
     t.add(1);
     t.add(0);
-    t.add(3);
     t.add(4);
+    t.add(3);
     t.add(5);
     t.postorder();
-    System.out.println(t.searchLongestPath());
+    //                  6
+    //       2
+    //    1     3
+    // 0           4
+    //                5
+    // System.out.println(t.searchLongestPath());
   }
 
   public static class BT {
