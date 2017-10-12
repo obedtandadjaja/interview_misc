@@ -1,9 +1,11 @@
 package DataStructures.abstracts;
 
-import java.util.*;
 import DataStructures.HashEntry;
+import DataStructures.LinkedList;
 
-public abstract class HashTableAbstract<K, V> {
+import java.util.*;
+
+public abstract class HashTableAbstract<K extends Comparable<K>, V> {
   protected int size;
   protected LinkedList<HashEntry<K, V>>[] entries;
   public abstract void put(K key, V value);

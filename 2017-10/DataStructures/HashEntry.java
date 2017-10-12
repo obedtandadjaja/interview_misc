@@ -1,6 +1,8 @@
 package DataStructures;
 
-public class HashEntry<K, V> {
+import java.util.*;
+
+public class HashEntry<K extends Comparable<K>, V> implements Comparable<HashEntry<K, V>> {
   private K key;
   private V value;
   HashEntry(K key, V value) {
@@ -10,4 +12,8 @@ public class HashEntry<K, V> {
 
   public K getKey() { return this.key; }
   public V getValue() { return this.value; }
+
+  public int compareTo(HashEntry<K, V> entry) {
+    return this.key.compareTo(entry.key);
+  }
 }

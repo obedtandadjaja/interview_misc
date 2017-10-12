@@ -5,9 +5,9 @@ import DataStructures.BSTNode;
 
 import java.util.*;
 
-public class InOrderTraversalIterator extends TreeTraversalIterator {
+public class InOrderTraversalIterator<E> extends TreeTraversalIterator<E> {
 
-  public InOrderTraversalIterator(BSTNode root) {
+  public InOrderTraversalIterator(BSTNode<E> root) {
     this.nextNode = root;
     if(this.nextNode != null) {
       while(this.nextNode.left != null) this.nextNode = this.nextNode.left;
@@ -18,23 +18,23 @@ public class InOrderTraversalIterator extends TreeTraversalIterator {
     return this.nextNode != null;
   }
 
-  public BSTNode next() {
+  public E next() {
     if(!hasNext()) throw new NoSuchElementException();
 
-    BSTNode current = this.nextNode;
+    BSTNode<E> current = this.nextNode;
 
     if(this.nextNode.right != null) {
       this.nextNode = this.nextNode.right;
       while(this.nextNode.left != null) this.nextNode = this.nextNode.left;
-      return current;
+      return current.data;
     } else {
       while(true) {
         if(this.nextNode.parent == null) {
           this.nextNode = null;
-          return current;
+          return current.data;
         } else if(this.nextNode.parent.left == this.nextNode) {
           this.nextNode = this.nextNode.parent;
-          return current;
+          return current.data;
         }
         this.nextNode = this.nextNode.parent;
       }

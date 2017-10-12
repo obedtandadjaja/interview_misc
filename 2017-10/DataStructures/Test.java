@@ -2,16 +2,22 @@ package DataStructures;
 
 import DataStructures.HashTable;
 import DataStructures.BinaryTree;
+import DataStructures.LinkedList;
 
 public class Test {
   public static void main(String[] args) {
     Test t = new Test();
-    // t.startHashTableExample();
+    t.startHashTableExample();
     t.startBinaryTreeExample();
+    t.startLinkedListExample();
   }
 
   public void startHashTableExample() {
     HashTable<String, String> contacts = new HashTable<String, String>();
+
+    System.out.println("\n---------------------------");
+    System.out.println("HashTable test");
+    System.out.println("---------------------------");
 
     contacts.put("Obed", "5594737555");
     contacts.put("Hello", "1234567890");
@@ -39,6 +45,10 @@ public class Test {
 
   public void startBinaryTreeExample() {
     BinaryTree<Integer> bst = new BinaryTree<Integer>();
+
+    System.out.println("\n---------------------------");
+    System.out.println("BinaryTree test");
+    System.out.println("---------------------------");
 
     bst.add(5);
     bst.add(9);
@@ -110,5 +120,61 @@ public class Test {
     bst.delete(7);
     System.out.println(bst.toString());
     System.out.println();
+  }
+
+  public void startLinkedListExample() {
+    LinkedList<Integer> ll = new LinkedList<Integer>();
+
+    System.out.println("\n---------------------------");
+    System.out.println("LinkedList test");
+    System.out.println("---------------------------");
+
+    System.out.println("adding 0-7 ...");
+    ll.add(0);
+    ll.add(1);
+    ll.add(2);
+    ll.add(3);
+    ll.add(4);
+    ll.add(5);
+    ll.add(6);
+    ll.add(7);
+
+    System.out.println(ll.toString());
+
+    System.out.println("\nSize: " + ll.size());
+
+    System.out.print("\nDeleting 7: ");
+    ll.remove(7);
+    System.out.println(ll.toString());
+
+    System.out.print("\nDeleting 0: ");
+    ll.remove(0);
+    System.out.println(ll.toString());
+
+    System.out.print("\nDeleting 3: ");
+    ll.remove(3);
+    System.out.println(ll.toString());
+
+    System.out.print("\nDeleting 1: ");
+    ll.remove(1);
+    System.out.println(ll.toString());
+
+    System.out.print("\nDeleting by index 0: ");
+    ll.removeByIndex(0);
+    System.out.println(ll.toString());
+
+    System.out.print("\nDeleting by index 2: ");
+    ll.removeByIndex(2);
+    System.out.println(ll.toString());
+
+    System.out.print("\nDeleting by index 1: ");
+    ll.removeByIndex(1);
+    System.out.println(ll.toString());
+
+    System.out.print("\nDeleting by index 0: ");
+    ll.removeByIndex(0);
+    System.out.println(ll.toString());
+
+    System.out.println("\nSize: " + ll.size());
   }
 }

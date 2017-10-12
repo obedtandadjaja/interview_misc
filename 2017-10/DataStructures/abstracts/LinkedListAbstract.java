@@ -1,28 +1,27 @@
 package DataStructures.abstracts;
 
-import DataStructures.BSTNode;
-import DataStructures.iterators.InOrderTraversalIterator;
+import DataStructures.LinkedListNode;
+import DataStructures.iterators.LinkedListIterator;
 
 import java.util.*;
 
-public abstract class BinaryTreeAbstract<E extends Comparable<E>> implements Iterable<E> {
+public abstract class LinkedListAbstract<E extends Comparable<E>> implements Iterable<E> {
+  public LinkedListNode<E> head;
+  public LinkedListNode<E> tail;
   protected int size;
-  public BSTNode<E> root;
 
-  public BinaryTreeAbstract() {
-    this.size = 0;
-    this.root = null;
-  }
   public abstract void add(E data);
-  public abstract void delete(E data);
+  public abstract void remove(E data);
+  public abstract void removeByIndex(int index);
   public abstract boolean lookup(E data);
+  public abstract E get(int index);
 
   public int size() {
     return this.size;
   }
 
   public Iterator<E> iterator() {
-    return new InOrderTraversalIterator(this.root);
+    return new LinkedListIterator(this.head);
   }
 
   public String toString() {

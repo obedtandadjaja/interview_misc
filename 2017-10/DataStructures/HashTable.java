@@ -1,10 +1,11 @@
 package DataStructures;
 
-import java.util.*;
 import DataStructures.abstracts.HashTableAbstract;
 import DataStructures.HashEntry;
 
-public class HashTable<K, V> extends HashTableAbstract<K, V> {
+import java.util.*;
+
+public class HashTable<K extends Comparable<K>, V> extends HashTableAbstract<K, V> {
   public HashTable() {
     this.size = 0;
     this.entries = new LinkedList[10];
@@ -39,7 +40,7 @@ public class HashTable<K, V> extends HashTableAbstract<K, V> {
       int hash = key.hashCode() % this.entries.length;
       for(int i = 0; i < this.entries[hash].size(); i++) {
         if(this.entries[hash].get(i).getKey() == key) {
-          this.entries[hash].remove(i);
+          this.entries[hash].removeByIndex(i);
           break;
         }
       }
