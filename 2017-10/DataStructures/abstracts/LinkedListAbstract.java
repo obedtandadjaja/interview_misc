@@ -11,8 +11,9 @@ public abstract class LinkedListAbstract<E extends Comparable<E>> implements Ite
   protected int size;
 
   public abstract void add(E data);
-  public abstract void remove(E data);
-  public abstract void removeByIndex(int index);
+  public abstract E remove(E data);
+  public abstract E removeByIndex(int index);
+  public abstract void insert(int index, E data) throws Exception;
   public abstract boolean lookup(E data);
   public abstract E get(int index);
 

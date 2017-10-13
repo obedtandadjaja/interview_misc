@@ -1,15 +1,13 @@
 package DataStructures;
 
-import DataStructures.HashTable;
-import DataStructures.BinaryTree;
-import DataStructures.LinkedList;
-
 public class Test {
   public static void main(String[] args) {
     Test t = new Test();
     t.startHashTableExample();
     t.startBinaryTreeExample();
     t.startLinkedListExample();
+    t.startStackExample();
+    t.startQueueExample();
   }
 
   public void startHashTableExample() {
@@ -138,8 +136,27 @@ public class Test {
     ll.add(5);
     ll.add(6);
     ll.add(7);
-
     System.out.println(ll.toString());
+
+    try {
+      System.out.println("\nInserting 99 at 8:");
+      ll.insert(8, 99);
+      System.out.println(ll.toString());
+
+      System.out.println("\nInserting 99 at 0:");
+      ll.insert(0, 99);
+      System.out.println(ll.toString());
+
+      System.out.println("\nInserting 99 at 5:");
+      ll.insert(5, 99);
+      System.out.println(ll.toString());
+
+      System.out.println("\nInserting 99 at 100:");
+      ll.insert(100, 99);
+      System.out.println(ll.toString());
+    } catch(Exception e) {
+      System.out.println(e.toString());
+    }
 
     System.out.println("\nSize: " + ll.size());
 
@@ -175,6 +192,92 @@ public class Test {
     ll.removeByIndex(0);
     System.out.println(ll.toString());
 
+    System.out.print("\nDeleting by index 0: ");
+    ll.removeByIndex(0);
+    System.out.println(ll.toString());
+
     System.out.println("\nSize: " + ll.size());
+  }
+
+  public void startStackExample() {
+    Stack<Integer> s = new Stack<Integer>();
+
+    System.out.println("\n---------------------------");
+    System.out.println("Stack test");
+    System.out.println("---------------------------");
+
+    System.out.println("adding 1-5 ...");
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    s.push(5);
+
+    System.out.println(s.toString());
+
+    System.out.print("\nPopping: ");
+    System.out.println(s.pop());
+    System.out.println("Result: " + s.toString());
+
+    System.out.print("\nPopping: ");
+    System.out.println(s.pop());
+    System.out.println("Result: " + s.toString());
+
+    System.out.print("\nPopping: ");
+    System.out.println(s.pop());
+    System.out.println("Result: " + s.toString());
+
+    System.out.print("\nPopping: ");
+    System.out.println(s.pop());
+    System.out.println("Result: " + s.toString());
+
+    System.out.print("\nPopping: ");
+    System.out.println(s.pop());
+    System.out.println("Result: " + s.toString());
+
+    System.out.print("\nPopping: ");
+    System.out.println(s.pop());
+    System.out.println("Result: " + s.toString());
+  }
+
+  public void startQueueExample() {
+    Queue<Integer> s = new Queue<Integer>();
+
+    System.out.println("\n---------------------------");
+    System.out.println("Queue test");
+    System.out.println("---------------------------");
+
+    System.out.println("adding 1-5 ...");
+    s.add(1);
+    s.add(2);
+    s.add(3);
+    s.add(4);
+    s.add(5);
+
+    System.out.println(s.toString());
+
+    System.out.print("\nPolling: ");
+    System.out.println(s.poll());
+    System.out.println("Result: " + s.toString());
+
+    System.out.print("\nPolling: ");
+    System.out.println(s.poll());
+    System.out.println("Result: " + s.toString());
+
+    System.out.print("\nPolling: ");
+    System.out.println(s.poll());
+    System.out.println("Result: " + s.toString());
+
+    System.out.print("\nPolling: ");
+    System.out.println(s.poll());
+    System.out.println("Result: " + s.toString());
+
+    System.out.print("\nPolling: ");
+    System.out.println(s.poll());
+    System.out.println("Result: " + s.toString());
+
+    System.out.print("\nPolling: ");
+    System.out.println(s.poll());
+    System.out.println("Result: " + s.toString());
   }
 }
