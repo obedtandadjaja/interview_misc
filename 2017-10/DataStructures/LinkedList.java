@@ -5,7 +5,7 @@ import DataStructures.LinkedListNode;
 
 import java.util.*;
 
-public class LinkedList<E extends Comparable<E>> extends LinkedListAbstract<E> {
+public class LinkedList<E> extends LinkedListAbstract<E> {
 
   public LinkedList() {
     this.head = null;
@@ -14,10 +14,10 @@ public class LinkedList<E extends Comparable<E>> extends LinkedListAbstract<E> {
   }
 
   public void add(E data) {
-    if(this.head == null) {
+    if(this.head == null) { // if ll is empty then head == tail
       this.head = new LinkedListNode<E>(null, data, null);
       this.tail = this.head;
-    } else if(this.head == this.tail) {
+    } else if(this.head == this.tail) { // if ll size == 1 then break off head and tail
       this.tail = new LinkedListNode<E>(this.head, data, null);
       this.head.next = this.tail;
     } else {
@@ -49,11 +49,11 @@ public class LinkedList<E extends Comparable<E>> extends LinkedListAbstract<E> {
 
     LinkedListNode<E> curr = null;
 
-    if(index == 0) { // if ll is empty then head == tail
+    if(index == 0) {
       curr = this.head;
       this.head = this.head.next;
       if(this.head != null) this.head.prev = null;
-    } else if(index == this.size-1) { // if ll size == 1 then break off head and tail
+    } else if(index == this.size-1) {
       curr = this.tail;
       this.tail = this.tail.prev;
       if(this.tail != null) this.tail.next = null;
@@ -66,6 +66,7 @@ public class LinkedList<E extends Comparable<E>> extends LinkedListAbstract<E> {
     }
 
     this.size--;
+    if(this.size == 0) this.head = this.tail = null;
 
     return curr != null ? curr.data : null;
   }
@@ -76,7 +77,7 @@ public class LinkedList<E extends Comparable<E>> extends LinkedListAbstract<E> {
     if(lookup(data)) {
       // searching for the data
       while(curr != null) {
-        if(curr.data.compareTo(data) == 0) break;
+        if(curr.data.equals(data)) break;
         curr = curr.next;
       }
 
@@ -101,7 +102,7 @@ public class LinkedList<E extends Comparable<E>> extends LinkedListAbstract<E> {
   public boolean lookup(E data) {
     LinkedListNode<E> curr = this.head;
     while(curr != null) {
-      if(curr.data.compareTo(data) == 0) return true;
+      if(curr.data.equals(data)) return true;
       curr = curr.next;
     }
     return false;

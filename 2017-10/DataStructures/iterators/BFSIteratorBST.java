@@ -3,17 +3,17 @@ package DataStructures.iterators;
 import DataStructures.abstracts.TreeTraversalIterator;
 import DataStructures.BSTNode;
 
-import DataStructures.Stack;
+import DataStructures.Queue;
 
 import java.util.*;
 
-public class DFSIteratorBST<E> extends TreeTraversalIterator<E> {
+public class BFSIteratorBST<E> extends TreeTraversalIterator<E> {
 
-  Stack<BSTNode<E>> s;
+  Queue<BSTNode<E>> q;
 
-  public DFSIteratorBST(BSTNode<E> root) {
+  public BFSIteratorBST(BSTNode<E> root) {
     this.nextNode = root;
-    this.s = new Stack<BSTNode<E>>();
+    this.q = new Queue<BSTNode<E>>();
   }
 
   public boolean hasNext() {
@@ -25,10 +25,10 @@ public class DFSIteratorBST<E> extends TreeTraversalIterator<E> {
 
     E returnValue = this.nextNode.data;
 
-    if(this.nextNode.right != null) this.s.push(this.nextNode.right);
-    if(this.nextNode.left != null) this.s.push(this.nextNode.left);
+    if(this.nextNode.left != null) this.q.add(this.nextNode.left);
+    if(this.nextNode.right != null) this.q.add(this.nextNode.right);
 
-    this.nextNode = this.s.pop();
+    this.nextNode = this.q.poll();
 
     return returnValue;
   }

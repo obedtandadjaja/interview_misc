@@ -3,9 +3,11 @@ package DataStructures.abstracts;
 import DataStructures.BSTNode;
 import DataStructures.iterators.InOrderTraversalIterator;
 
+import DataStructures.interfaces.Tree;
+
 import java.util.*;
 
-public abstract class BinaryTreeAbstract<E extends Comparable<E>> implements Iterable<E> {
+public abstract class BinaryTreeAbstract<E extends Comparable<E>> implements Tree<E>, Iterable<E> {
   protected int size;
   public BSTNode<E> root;
 

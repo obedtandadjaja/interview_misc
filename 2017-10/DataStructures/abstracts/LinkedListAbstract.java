@@ -5,7 +5,7 @@ import DataStructures.iterators.LinkedListIterator;
 
 import java.util.*;
 
-public abstract class LinkedListAbstract<E extends Comparable<E>> implements Iterable<E> {
+public abstract class LinkedListAbstract<E> implements Iterable<E> {
   public LinkedListNode<E> head;
   public LinkedListNode<E> tail;
   protected int size;

@@ -5,7 +5,7 @@ import DataStructures.LinkedList;
 
 import java.util.*;
 
-public class Queue<E extends Comparable<E>> extends QueueAbstract<E> {
+public class Queue<E> extends QueueAbstract<E> {
 
   public Queue() {
     this.ll = new LinkedList<E>();

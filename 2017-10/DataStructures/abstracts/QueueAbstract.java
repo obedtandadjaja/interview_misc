@@ -4,7 +4,7 @@ import DataStructures.LinkedList;
 
 import java.util.*;
 
-public abstract class QueueAbstract<E extends Comparable<E>> {
+public abstract class QueueAbstract<E> {
   protected LinkedList<E> ll;
 
   // can be normal or priority queue - depends on the implementation

@@ -2,9 +2,7 @@ package DataStructures;
 
 import DataStructures.abstracts.LinkedListNodeAbstract;
 
-import java.util.*;
-
-public class LinkedListNode<E extends Comparable<E>> extends LinkedListNodeAbstract<E> implements Comparable<LinkedListNode<E>> {
+public class LinkedListNode<E> extends LinkedListNodeAbstract<E> {
   public LinkedListNode prev;
   public LinkedListNode next;
 
@@ -12,9 +10,5 @@ public class LinkedListNode<E extends Comparable<E>> extends LinkedListNodeAbstr
     this.prev = prev;
     this.data = data;
     this.next = next;
-  }
-
-  public int compareTo(LinkedListNode<E> node) {
-    return this.data.compareTo(node.data);
   }
 }

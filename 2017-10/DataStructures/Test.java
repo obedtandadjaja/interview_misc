@@ -3,11 +3,11 @@ package DataStructures;
 public class Test {
   public static void main(String[] args) {
     Test t = new Test();
-    t.startHashTableExample();
+    // t.startHashTableExample();
     t.startBinaryTreeExample();
-    t.startLinkedListExample();
-    t.startStackExample();
-    t.startQueueExample();
+    // t.startLinkedListExample();
+    // t.startStackExample();
+    // t.startQueueExample();
   }
 
   public void startHashTableExample() {

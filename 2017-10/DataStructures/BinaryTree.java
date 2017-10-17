@@ -3,6 +3,11 @@ package DataStructures;
 import DataStructures.abstracts.BinaryTreeAbstract;
 import DataStructures.BSTNode;
 
+import DataStructures.iterators.PreOrderTraversalIterator;
+import DataStructures.iterators.PostOrderTraversalIterator;
+import DataStructures.iterators.DFSIteratorBST;
+import DataStructures.iterators.BFSIteratorBST;
+
 import java.util.*;
 
 public class BinaryTree<E extends Comparable<E>> extends BinaryTreeAbstract<E> {
@@ -58,6 +63,10 @@ public class BinaryTree<E extends Comparable<E>> extends BinaryTreeAbstract<E> {
   public E nextInorderData(BSTNode<E> root) {
     if(root.left == null) return root.data;
     else return (E)nextInorderData(root.left);
+  }
+
+  public Iterator<E> iterator() {
+    return new DFSIteratorBST(this.root);
   }
 
   public boolean lookup(E data) {

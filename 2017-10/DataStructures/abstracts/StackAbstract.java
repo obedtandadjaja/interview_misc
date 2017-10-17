@@ -4,7 +4,7 @@ import DataStructures.LinkedList;
 
 import java.util.*;
 
-public abstract class StackAbstract<E extends Comparable<E>> {
+public abstract class StackAbstract<E> {
   protected LinkedList<E> ll;
 
   public void push(E data) {
@@ -13,6 +13,10 @@ public abstract class StackAbstract<E extends Comparable<E>> {
 
   public E pop() {
     return this.ll.removeByIndex(this.ll.size()-1);
+  }
+
+  public E peek() {
+    return this.ll.tail != null ? this.ll.tail.data : null;
   }
 
   public int size() {
