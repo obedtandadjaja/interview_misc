@@ -3,11 +3,11 @@ package interview201710.DataStructures;
 public class Test {
   public static void main(String[] args) {
     Test t = new Test();
-    // t.startHashTableExample();
+    t.startHashTableExample();
     t.startBinaryTreeExample();
-    // t.startLinkedListExample();
-    // t.startStackExample();
-    // t.startQueueExample();
+    t.startLinkedListExample();
+    t.startStackExample();
+    t.startQueueExample();
   }
 
   public void startHashTableExample() {
@@ -157,6 +157,10 @@ public class Test {
     } catch(Exception e) {
       System.out.println(e.toString());
     }
+
+    System.out.print("\nReversing: ");
+    ll.reverse();
+    System.out.println(ll.toString());
 
     System.out.println("\nSize: " + ll.size());
 

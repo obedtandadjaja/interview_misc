@@ -108,6 +108,21 @@ public class LinkedList<E> extends LinkedListAbstract<E> {
     return false;
   }
 
+  public void reverse() {
+    LinkedListNode<E> current = this.head;
+    LinkedListNode<E> currentHead = this.head;
+    while(current.next != null) {
+      LinkedListNode<E> nodeToMove = current.next;
+      current.next = nodeToMove.next;
+      nodeToMove.next = currentHead;
+      currentHead.prev = nodeToMove;
+      currentHead = nodeToMove;
+    }
+
+    this.head = currentHead;
+    this.tail = current;
+  }
+
   public E get(int index) {
     if(index == 0) return this.head.data;
     if(index == this.size-1) return this.tail.data;
