@@ -29,8 +29,12 @@ public class LinkedList<E> extends LinkedListAbstract<E> {
   }
 
   public void insert(int index, E data) throws Exception {
-    if(index == size()) add(data);
-    else {
+    if(index == size()) {
+      add(data);
+    } else if(index == 0) {
+      this.head = new LinkedListNode<E>(null, data, this.head);
+      this.size++;
+    } else {
       LinkedListNode<E> curr = this.head;
       for(int i = 0; i < index; i++) {
         if(curr.next != null) curr = curr.next;
@@ -40,7 +44,8 @@ public class LinkedList<E> extends LinkedListAbstract<E> {
       LinkedListNode<E> insertedNode = new LinkedListNode<E>(curr.prev, data, curr.next);
       if(curr.prev != null) curr.prev.next = insertedNode;
       if(curr.next != null) curr.next.prev = insertedNode;
-      if(curr == this.head) this.head = insertedNode;
+
+      this.size++;
     }
   }
 

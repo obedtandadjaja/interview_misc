@@ -8,6 +8,7 @@ public class Test {
     t.startLinkedListExample();
     t.startStackExample();
     t.startQueueExample();
+    t.startPriorityQueueExample();
   }
 
   public void startHashTableExample() {
@@ -283,5 +284,22 @@ public class Test {
     System.out.print("\nPolling: ");
     System.out.println(s.poll());
     System.out.println("Result: " + s.toString());
+  }
+
+  public void startPriorityQueueExample() {
+    PriorityQueue<Integer> s = new PriorityQueue<Integer>();
+
+    System.out.println("\n---------------------------");
+    System.out.println("PriorityQueue test");
+    System.out.println("---------------------------");
+
+    System.out.println("adding 1-5 in reverse ...");
+    s.add(5);
+    s.add(4);
+    s.add(3);
+    s.add(2);
+    s.add(1);
+
+    System.out.println(s.toString());
   }
 }
