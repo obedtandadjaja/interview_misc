@@ -7,7 +7,7 @@ public class ReturnKthToLast {
     LinkedList<Integer> ll1 = new LinkedList<Integer>();
     ll1.add(1); ll1.add(1); ll1.add(3); ll1.add(5); ll1.add(5);
     System.out.println("LL: " + ll1.toString());
-    System.out.println("3rd from last: " + returnKthToLast(ll1.head.data));
+    System.out.println("3rd from last: " + returnKthToLast(ll1.head, 3).data);
   }
 
   public static LinkedListNode<Integer> returnKthToLast(LinkedListNode<Integer> head, int k) {

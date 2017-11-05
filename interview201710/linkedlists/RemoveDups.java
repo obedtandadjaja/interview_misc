@@ -1,7 +1,7 @@
 package interview201710.linkedlists;
 
 import interview201710.DataStructures.*;
-import java.util.*;
+import java.util.HashSet;
 
 public class RemoveDups {
 
@@ -13,16 +13,16 @@ public class RemoveDups {
     System.out.println("After remove duplicates: " + ll1.toString());
   }
 
-  public LinkedListNode<Integer> removeDuplicates(LinkedListNode<Integer> head) {
+  public static LinkedListNode<Integer> removeDuplicates(LinkedListNode<Integer> head) {
     HashSet<Integer> set = new HashSet<Integer>();
     set.add(head.data);
     LinkedListNode<Integer> curr = head;
     while(curr.next != null) {
       if(set.contains(curr.next.data)) {
         curr.next = curr.next.next;
-        curr.next.prev = curr;
+        if(curr.next != null) curr.next.prev = curr;
       } else {
-        set.add(curr.data);
+        set.add((Integer)curr.next.data);
         curr = curr.next;
       }
     }

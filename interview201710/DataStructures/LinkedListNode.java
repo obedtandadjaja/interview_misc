@@ -11,4 +11,13 @@ public class LinkedListNode<E> extends LinkedListNodeAbstract<E> {
     this.data = data;
     this.next = next;
   }
+
+  public LinkedListNode() {
+    this.prev = null;
+    this.next = null;
+  }
+
+  public E getData() {
+    return this.data;
+  }
 }

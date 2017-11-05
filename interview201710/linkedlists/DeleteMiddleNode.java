@@ -13,7 +13,7 @@ public class DeleteMiddleNode {
 
   public static boolean deleteNode(LinkedListNode<Integer> nodeToRemove) {
     if(nodeToRemove == null || nodeToRemove.next == null) return false;
-    nodeToRemove.data = nodeToRemove.next.data;
+    nodeToRemove.data = (Integer)nodeToRemove.next.data;
     nodeToRemove.next = nodeToRemove.next.next;
     return true;
   }
