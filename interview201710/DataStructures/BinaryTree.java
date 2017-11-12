@@ -65,9 +65,9 @@ public class BinaryTree<E extends Comparable<E>> extends BinaryTreeAbstract<E> {
     else return (E)nextInorderData(root.left);
   }
 
-  public Iterator<E> iterator() {
-    return new DFSIteratorBST(this.root);
-  }
+  // public Iterator<E> iterator() {
+    // return new DFSIteratorBST(this.root);
+  // }
 
   public boolean lookup(E data) {
     return search(data, root) != null;
