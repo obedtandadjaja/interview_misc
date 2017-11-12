@@ -9,6 +9,9 @@ public class Test {
     t.startStackExample();
     t.startQueueExample();
     t.startPriorityQueueExample();
+    t.startMinHeapExample();
+    t.startMaxHeapExample();
+    t.startArrayListExample();
   }
 
   public void startHashTableExample() {
@@ -301,5 +304,91 @@ public class Test {
     s.add(1);
 
     System.out.println(s.toString());
+  }
+
+  public void startMinHeapExample() {
+    MinHeap<Integer> h = new MinHeap<Integer>();
+
+    System.out.println("\n---------------------------");
+    System.out.println("MinHeap test");
+    System.out.println("---------------------------");
+
+    System.out.println("adding 1-5 in reverse ...");
+    h.insert(5);
+    h.insert(4);
+    h.insert(3);
+    h.insert(2);
+    h.insert(1);
+
+    System.out.println(h.toString());
+
+    System.out.println("removing top: " + h.removeTop());
+    System.out.println("removing top: " + h.removeTop());
+    System.out.println("removing top: " + h.removeTop());
+    System.out.println("removing top: " + h.removeTop());
+    System.out.println("removing top: " + h.removeTop());
+  }
+
+  public void startMaxHeapExample() {
+    MaxHeap<Integer> h = new MaxHeap<Integer>();
+
+    System.out.println("\n---------------------------");
+    System.out.println("MaxHeap test");
+    System.out.println("---------------------------");
+
+    System.out.println("adding 1-5 ...");
+    h.insert(1);
+    h.insert(2);
+    h.insert(3);
+    h.insert(4);
+    h.insert(5);
+
+    System.out.println(h.toString());
+
+    System.out.println("removing top: " + h.removeTop());
+    System.out.println("removing top: " + h.removeTop());
+    System.out.println("removing top: " + h.removeTop());
+    System.out.println("removing top: " + h.removeTop());
+    System.out.println("removing top: " + h.removeTop());
+  }
+
+  public void startArrayListExample() {
+    ArrayList<Integer> a = new ArrayList<Integer>();
+
+    System.out.println("\n---------------------------");
+    System.out.println("ArrayList test");
+    System.out.println("---------------------------");
+
+    try {
+        System.out.println("adding 1-5 ...");
+        a.add(1);
+        a.add(2);
+        a.add(3);
+        a.add(4);
+        a.add(5);
+
+        System.out.println(a.toString());
+
+        System.out.println("removing 2: " + a.remove(2));
+        System.out.println(a.toString());
+        System.out.println("removing 3: " + a.remove(3));
+        System.out.println(a.toString());
+        System.out.println("removing 1: " + a.remove(1));
+        System.out.println(a.toString());
+        System.out.println("removing 1: " + a.remove(1));
+        System.out.println(a.toString());
+        System.out.println("removing 0: " + a.remove(0));
+        System.out.println(a.toString());
+
+        System.out.println("inserting 99 at index 5...");
+        a.insert(99, 5);
+        System.out.println(a.toString()+"\n");
+
+        System.out.println("inserting 99 at index 15...");
+        a.insert(99, 15);
+        System.out.println(a.toString());
+    } catch(Exception e) {
+        System.out.println(e.toString());
+    }
   }
 }
