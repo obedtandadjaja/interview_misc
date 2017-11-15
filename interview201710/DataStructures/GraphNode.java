@@ -8,6 +8,7 @@ public class GraphNode<E> extends NodeAbstract<E> {
 
   public GraphNode(E data) {
     this.children = new ArrayList<GraphNode<E>>();
+    this.data = data;
   }
 
   public GraphNode(E data, ArrayList<GraphNode<E>> children) {

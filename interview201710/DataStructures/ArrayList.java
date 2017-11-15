@@ -1,7 +1,5 @@
 package interview201710.DataStructures;
 
-import java.util.*;
-
 public class ArrayList<E> {
   E[] array;
   int size;
@@ -42,36 +40,26 @@ public class ArrayList<E> {
     this.size = this.size+1 < index+1 ? index+1 : this.size+1;
   }
 
-  public E get(int index) throws Exception {
-    if(this.size > index)
-      return this.array[index];
-    else
-      throw new Exception("Index out of bounds");
+  public E get(int index) {
+    return this.array[index];
   }
 
-  public E remove(int index) throws Exception {
-    if(this.size > index) {
-      E returnValue = this.array[index];
+  public E remove(int index) {
+    E returnValue = this.array[index];
 
-      for(int i = index; i < this.size; i++)
-        this.array[i] = this.array[i+1];
-      this.array[this.size-1] = null;
-      this.size--;
+    for(int i = index; i < this.size; i++)
+      this.array[i] = this.array[i+1];
+    this.array[this.size-1] = null;
+    this.size--;
 
-      return returnValue;
-    } else {
-      throw new Exception("Index out of bounds");
-    }
+    return returnValue;
   }
 
   public E remove(E data) {
     for(int i = 0; i < this.size; i++) {
       if(this.array[i] == data) {
         E returnValue = this.array[i];
-        try {
-          remove(i);
-        } catch(Exception e) {}
-        return returnValue;
+        remove(i);
       }
     }
     return null;
