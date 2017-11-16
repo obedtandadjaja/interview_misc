@@ -28,7 +28,7 @@ public class LinkedList<E> extends LinkedListAbstract<E> {
     this.size++;
   }
 
-  public void insert(int index, E data) throws Exception {
+  public void insert(int index, E data) {
     if(index == size()) {
       add(data);
     } else if(index == 0) {
@@ -38,7 +38,6 @@ public class LinkedList<E> extends LinkedListAbstract<E> {
       LinkedListNode<E> curr = this.head;
       for(int i = 0; i < index; i++) {
         if(curr.next != null) curr = curr.next;
-        else throw new Exception("LinkedList size is less than index.");
       }
 
       LinkedListNode<E> insertedNode = new LinkedListNode<E>(curr.prev, data, curr.next);

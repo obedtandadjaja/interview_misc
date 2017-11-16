@@ -13,9 +13,13 @@ public abstract class LinkedListAbstract<E> implements Iterable<E> {
   public abstract void add(E data);
   public abstract E remove(E data);
   public abstract E removeByIndex(int index);
-  public abstract void insert(int index, E data) throws Exception;
+  public abstract void insert(int index, E data);
   public abstract boolean lookup(E data);
   public abstract E get(int index);
+
+  public void addAll(LinkedListAbstract<E> ll) {
+    for(E data : ll) add(data);
+  }
 
   public int size() {
     return this.size;

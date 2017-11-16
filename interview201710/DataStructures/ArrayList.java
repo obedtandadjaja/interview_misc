@@ -1,6 +1,12 @@
 package interview201710.DataStructures;
 
-public class ArrayList<E> {
+import interview201710.DataStructures.iterators.ArrayListIterator;
+import interview201710.DataStructures.LinkedList;
+
+import java.lang.Iterable;
+import java.util.Iterator;
+
+public class ArrayList<E> implements Iterable<E> {
   E[] array;
   int size;
 
@@ -19,7 +25,6 @@ public class ArrayList<E> {
     for(int i = 0; i < this.array.length; i++)
       new_array[i] = this.array[i];
     this.array = new_array;
-    System.out.println(this.array.length);
   }
 
   public void add(E data) {
@@ -74,5 +79,17 @@ public class ArrayList<E> {
 
   public int size() {
     return this.size;
+  }
+
+  public Iterator<E> iterator() {
+    return new ArrayListIterator(this.array, this.size);
+  }
+
+  public void addAll(ArrayList<E> arrayList) {
+    for(E data : arrayList) add(data);
+  }
+
+  public void addAll(LinkedList<E> ll) {
+    for(E data : ll) add(data);
   }
 }
