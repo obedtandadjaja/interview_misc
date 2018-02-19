@@ -25,7 +25,7 @@ class LongestPalindrome {
         System.out.println(longestPalindrome(s));
     }
 
-    public static String longestPalindrome(String s) {
+    public String longestPalindrome(String s) {
         
         int start = 0;
         int end = 1;
@@ -35,20 +35,20 @@ class LongestPalindrome {
             int len2 = expand(s, i, i);
             int len = Math.max(len1, len2);
             if(len > end - start) {
-                start = i - (len-1)/2;
-                end = i + (len)/2;
+                start = i - (len)/2;
+                end = i + (len + 1)/2;
             }
         }
         
         return s.substring(start, end);
     }
     
-    public static int expand(String s, int start, int end) {
+    public int expand(String s, int start, int end) {
         while(start >= 0 && end <= s.length()-1 && s.charAt(start) == s.charAt(end)) {
             start--;
             end++;
         }
 
-        return end - start;
+        return end - (start+1);
     }
 }
