@@ -16,6 +16,12 @@ A solution set is:
 import java.util.*;
 
 class 3Sum {
+    public static void main(String[] args) {
+        int[] nums = new int[] { -1, 0, 1, 2, -1, -4 };
+        List<List<Integer>> list = threeSum(nums);
+        for(List<Integer> l : list) System.out.println(l.toString());
+    }
+  
     public List<List<Integer>> threeSum(int[] nums) {
         
         List<List<Integer>> list = new ArrayList<List<Integer>>();
