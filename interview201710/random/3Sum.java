@@ -22,7 +22,7 @@ class 3Sum {
         for(List<Integer> l : list) System.out.println(l.toString());
     }
   
-    public List<List<Integer>> threeSum(int[] nums) {
+    public static List<List<Integer>> threeSum(int[] nums) {
         
         List<List<Integer>> list = new ArrayList<List<Integer>>();
         Arrays.sort(nums);
