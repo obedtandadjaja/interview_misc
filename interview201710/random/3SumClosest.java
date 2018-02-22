@@ -18,7 +18,7 @@ class 3SumClosest {
         System.out.println(threeSumClosest(nums, target));
     }
 
-    public int threeSumClosest(int[] nums, int target) {
+    public static int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
         int minSum = 0;
         int min = Integer.MAX_VALUE;
