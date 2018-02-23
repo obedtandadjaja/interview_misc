@@ -1,3 +1,9 @@
+/*
+Divide two integers without using multiplication, division and mod operator.
+
+If it is overflow, return MAX_INT.
+*/
+
 class DivideTwoIntegers {
     public static void main(String[] args) {
         int dividend = -2147483648;
