@@ -30,4 +30,18 @@ public class ValidateBST {
     if(min > root.data || max < root.data) return false;
     else return isBST(min, root.left, root.data) && isBST(root.data, root.right, max);
   }
+  
+  // takes care of when val = Integer.MAX_VALUE || Integer.MIN_VALUE
+  public boolean isValidBST(TreeNode root) {
+      return traverseBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+  }
+
+  public boolean traverseBST(TreeNode root, long min, long max) {
+      if(root == null) {
+          return true;
+      } else {
+          if(root.val <= min || root.val >= max) return false;
+          return traverseBST(root.left, min, root.val) && traverseBST(root.right, root.val, max);
+      }
+  }
 }
