@@ -8,6 +8,8 @@
  */
  
 class Palindrome2 {
+ 
+    // O(N) space complexity - utilizing stack
     public boolean isPalindrome(ListNode head) {
         if(head == null) return true;
         
@@ -30,7 +32,9 @@ class Palindrome2 {
         }
         
         return true;
+    }
     
+    // O(1) space complexity - reversing first half
     public boolean isPalindrome2(ListNode head) {
         if(head == null) return true;
         
