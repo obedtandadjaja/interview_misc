@@ -1,0 +1,112 @@
+Please use this Google doc to code during your interview. To free your hands for coding, we recommend that you use a headset or a phone with speaker option.
+
+positive number is a power of 2?
+
+8 = 2^3 = 8/4/2
+
+2 => 4
+
+8/2^2 = 2 => 2^1
+
+2^2*2^1 = 2^3 = 8
+
+2^2*2^1 = 2^2+1
+
+2^2 = 4
+
+
+
+18/2^1 = 9%2 == 1 => odd
+
+2 => 2^2 => 2^3
+
+2^3 => 2^2 => 2
+
+16 = 2^4 => 16/16 = 1
+
+log_2 (16) = 3.999998
+
+log_2 (15) = 3.xxxx
+
+3.xxxxx - (3.xxxx % 1) = 0.xxxxx
+
+
+
+15 = 3 * 5
+
+21 = 3 * 7
+
+6 = 2 * 3
+
+16 = 2^4
+
+
+
+8 >> 1 = 4 >> 1 = 2 >> 1 = 0
+
+int = 2^32
+
+4 = 100
+
+3 = 011
+
+4 && 3 = 0
+
+4 = 100 => 3 = 011
+
+00001000000000
+
+100
+011
+---- &
+000
+
+complexity = O(1)
+space = O(1)
+
+
+
+
+
+a group of people N. Some of them have connection to each other the connection could be friends or enemies (not both). Some of them have connections but they don't know all possible connections. they only know partial connection at once.
+
+
+RULE#1: F(A,B) & F(B,C) => F(A,C)
+RULE#2: E(A,B) & E(B,C) => F(A,C)
+
+
+10
+2 1 F
+2 3 F
+4 3 E
+4 5 E
+--------------
+
+
+
+1 5 ? => F
+
+matrix[10][10]
+bidirectional graph
+
+enemies[4] => 3, 5, 6
+
+4 3 E
+4 5 E
+4 6 E
+
+matrix[i][j] => int matrix where 1 = Friends, -1 = Enemies, 0 = no connection
+
+boolean isFriends(int[][] matrix, int i, int j, boolean isFriend) {
+  if((matrix[i][j] == 1 && isFriend) ||
+         (matrix[i][j] == -1 && !isFriend)) return true;
+  else {
+    for(int index = 0; index < matrix.length; index++) {
+      if((matrix[i][index] == 1 && isFriend) ||
+                     (matrix[i][index] == -1 && !isFriend)) {
+        if(isFriends(matrix, index, j, matrix[i][index] == 1)) return true;
+      }
+    }
+    return false;
+  }
+}
