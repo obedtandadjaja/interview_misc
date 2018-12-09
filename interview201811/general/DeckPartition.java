@@ -1,3 +1,6 @@
+// Difficulty: Easy
+// Runtime: 7 ms, faster than 90.07% of Java online submissions for X of a Kind in a Deck of Cards.
+
 // In a deck of cards, each card has an integer written on it.
 // Return true if and only if you can choose X >= 2 such that it is possible to split the
 // entire deck into 1 or more groups of cards, where:
@@ -21,11 +24,6 @@
 //  Explanation: No possible partition.
 
 //  Example 4:
-//  Input: [1,1]
-//  Output: true
-//  Explanation: Possible partition [1,1]
-
-//  Example 5:
 //  Input: [1,1,2,2,2,2]
 //  Output: true
 //  Explanation: Possible partition [1,1],[2,2],[2,2]
