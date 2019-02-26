@@ -38,6 +38,62 @@
   The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
  */
 class Solution {
+  // fastest
+  // approach: do BFS starting with the outermost layer where there is only 1 connection
+  //           iterate level per level with BFS and decrementing the degree of the neighbors
+  public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+    List<List<Integer>> myGraph = new ArrayList<List<Integer>>();
+    List<Integer> result = new ArrayList<Integer>();
+
+    if (n == 1) {
+      result.add(0);
+      return result;
+    }
+
+    int[] degree = new int[n];
+
+    for(int i=0; i<n; i++) myGraph.add(new ArrayList<Integer>());
+    for(int i=0; i<edges.length; i++) {
+    	myGraph.get(edges[i][0]).add(edges[i][1]);
+    	myGraph.get(edges[i][1]).add(edges[i][0]);
+    	degree[edges[i][0]]++;
+    	degree[edges[i][1]]++;
+    }
+
+    Queue<Integer> q = new ArrayDeque<Integer>();
+
+    for(int i = 0; i < n; i++) {
+    	if (degree[i] == 0)
+    		return result;
+    	else if (degree[i] == 1)
+    		q.offer(i);
+    }
+
+    while(!q.isEmpty()) {
+    	result = new ArrayList<Integer>();
+    	int count = q.size();
+
+    	for(int i = 0; i < count; i++){
+    		int curr = q.poll();
+    		result.add(curr);
+    		degree[curr]--;
+
+    		for(int j = 0; j < myGraph.get(curr).size(); j++) {
+    			int next = myGraph.get(curr).get(k);
+
+    			if (degree[next] == 0) continue;
+    			if (degree[next] == 2) q.offer(next);
+
+				  degree[next]--;
+    		}
+    	}
+    }
+
+    return result;
+  }
+
+  // slower
+  // approach: use cached DFS to get the minimum depth per node
   public List<Integer> findMinHeightTrees(int n, int[][] edges) {
     List<List<Integer>> graph = new ArrayList<>();
 
@@ -47,10 +103,12 @@ class Solution {
       graph.get(edges[i][1]).add(edges[i][0]);
     }
 
+    HashMap<String, Integer> map = new HashMap<>();
     List<Integer> result = new ArrayList<Integer>();
+
     int minDepth = Integer.MAX_VALUE;
     for(int i = 0; i < n; i++) {
-      int verticeDepth = getMaxDepth(graph, i, -1);
+      int verticeDepth = getMaxDepth(graph, map, i, -1);
       if(minDepth == verticeDepth) {
         result.add(i);
       } else if(minDepth > verticeDepth) {
@@ -63,15 +121,18 @@ class Solution {
     return result;
   }
 
-  public int getMaxDepth(List<List<Integer>> graph, int curr, int prev) {
+  public int getMaxDepth(List<List<Integer>> graph, HashMap<String, Integer> map, int curr, int prev) {
     if(graph.get(curr).size() == 0) return 1;
+    if(map.containsKey(curr + " " + prev)) return map.get(curr + " " + prev);
 
-    int maxDepth = Integer.MIN_VALUE;
+    int maxDepth = 0;
     for(int i = 0; i < graph.get(curr).size(); i++) {
       if(graph.get(curr).get(i) == prev) continue;
 
-      maxDepth = Math.max(maxDepth, getMaxDepth(graph, graph.get(curr).get(i), curr) + 1);
+      maxDepth = Math.max(maxDepth, getMaxDepth(graph, map, graph.get(curr).get(i), curr) + 1);
     }
+
+    map.put(curr + " " + prev, maxDepth);
 
     return maxDepth;
   }
