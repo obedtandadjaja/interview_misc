@@ -53,4 +53,35 @@ class Solution {
 
     return false;
   }
+
+  // idea is to split the array into two, one section will be in order
+  // check the inorder section of the array if b is within that then
+  // go and find it
+  public boolean search(List<Integer> a, int b) {
+    int start = 0;
+    int end = a.size() - 1;
+    int mid = -1;
+
+    while(start <= end) {
+      mid = (start + end) / 2;
+
+      if(a.get(mid) == b) {
+        return true;
+      } else if(a.get(start) < a.get(mid) || a.get(mid) > a.get(end)) { // conditions to choose section 1
+        if(a.get(start) <= b && a.get(mid) > b)
+          end = mid - 1;
+        else
+          start = mid + 1;
+      } else if(a.get(mid) < a.get(end) || a.get(mid) < a.get(start)) { // conditions to choose section 2
+        if(a.get(mid) < b && a.get(end) >= b)
+          start = mid + 1;
+        else
+          end = mid - 1;
+      } else {
+        end--; // decrement end in case of duplicates i.e. [1,3,1,1]
+      }
+    }
+
+    return false;
+  }
 }

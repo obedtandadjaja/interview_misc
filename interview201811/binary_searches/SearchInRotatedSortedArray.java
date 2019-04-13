@@ -53,7 +53,7 @@ class Solution {
   }
 
   // idea is to split the array into two, one section will be in order
-  // check the in order section of the array if b is within that then
+  // check the inorder section of the array if b is within that then
   // go in and find it
   public int search(final List<Integer> a, int b) {
     int start = 0;
