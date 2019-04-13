@@ -19,7 +19,7 @@
 
   Input: nums = [4,5,6,7,0,1,2], target = 3
   Output: -1
- */
+*/
 
 class Solution {
   public int search(int[] nums, int target) {
@@ -46,6 +46,35 @@ class Solution {
         end = middle -1;
       } else {
         return curr;
+      }
+    }
+
+    return -1;
+  }
+
+  // idea is to split the array into two, one section will be in order
+  // check the in order section of the array if b is within that then
+  // go in and find it
+  public int search(final List<Integer> a, int b) {
+    int start = 0;
+    int end = a.size() - 1;
+    int mid = 0;
+
+    while(start <= end) {
+      mid = (start + end) / 2;
+
+      if(a.get(mid) == b) {
+        return mid;
+      } else if(a.get(start) <= a.get(mid)) { // section 1 is inorder
+        if(a.get(start) <= b && a.get(mid) > b)
+          end = mid - 1;
+        else
+          start = mid + 1;
+      } else { // section 2 is inorder
+        if(a.get(mid) < b && a.get(end) >= b)
+          start = mid + 1;
+        else
+          end = mid - 1;
       }
     }
 
